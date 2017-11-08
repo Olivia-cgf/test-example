@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script src="../dist/vue.js"></script>
+	<script>
+	// data属性
+	 	var data={a:1};
+	 	var vm=new Vue({
+	 		data:data
+	 	})
+
+	 	vm.a===data.a
+
+	 	vm.a=2
+	 	data.a
+
+	 	data.a=3
+	 	vm.a
+
+	 	// 实例属性与方法
+	 	var data={a:1}
+	 	var vm=new Vue({
+	 		el:"#example",
+	 		data:data
+	 	})
+
+	 	vm.$data===data
+	 	vm.$el===document.getElementById("example");
+
+	 	// $watch是一个实例方法
+	 	vm.$watch('a',function(newVal,oldVal){
+	 		//这个回调将在"vm.a"改变后调用
+	 	})
+	</script>
+</body>
+</html>

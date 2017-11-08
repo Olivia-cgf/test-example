@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   <div id="example">
+   	<p>Original message:"{{message}}"</p>
+   	<p>Computed reversed message:"{{reversedMessage}}"</p>
+   </div>
+	<script src="../dist/vue.js"></script>
+	<script>
+    var vm=new Vue({
+    	el:"#example",
+    	data:{
+    		message:"Hello"
+    	},
+    	computed:{
+    		reversedMessage:function(){
+    			
+    		}
+    	}
+    })
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ <!--  <div id="example-2">
+   <simple-counter></simple-counter>
+   <simple-counter></simple-counter>
+   <simple-counter></simple-counter>
+ </div> -->
+
+  <div id="example-3">
+    <child message='hello'></child>
+  </div>
+  
+  <script src="../dist/vue.js"></script>
+	<script>
+/*     var data={counter:0}
+     Vue.component('simple-counter',{
+       template:'<button v-on:click="counter+=1">{{counter}}</button>',
+       data:function(){
+        return {
+          counter:0
+        }
+       }
+     })
+     new Vue({
+      el:"#example-2"
+     })*/
+   
+
+   Vue.component('child',{
+     //申明props
+     props:['message'],
+     template:'<span>{{message}}</span>'
+   })
+   
+   new Vue({
+     el:"#example-3"
+   })
+	</script>
+</body>
+</html>

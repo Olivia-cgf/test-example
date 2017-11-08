@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   <div  id="app">   
+       <h1 v-if="ok">Yes</h1>
+       <h1 v-else>No</h1> 
+  </div>
+   
+   <div id="app2">
+     <template v-if="ok">
+     	<h1>Title</h1>
+     	<p>	Paragraph1</p>
+     	<p>	Paragprah2</p>
+     </template>
+   </div>
+   <div id="app3">
+   
+      <div v-if="Math.random()>0.5">
+      	Now you see me
+      </div>
+      <div v-else>
+        Now you don't
+      </div>
+   </div>
+  
+   <div id="app4">
+        <div v-if="type==='A'">
+          A
+        </div>
+        <div v-else-if="type==='B'">
+          B
+         </div>
+         <div v-else-if="type==='C'">
+           C
+         </div>
+         <div v-else>
+           Not A/B/C
+         </div>
+
+     </div>
+
+     <div id="app5">
+       <template v-if="loginType==='username">
+         <label for="">username</label>
+         <input placeholder="Enter your username">
+       </template>
+       <template v-else>
+         <label for="">Email</label>
+         <input placeholder="Enter your email address">
+       </template>
+       <button>toggle login type</button>
+     </div>
+    <script src="../dist/vue.js"></script>
+	<script>
+    var app=new Vue({
+      	el:"#app",
+      	data:{
+      		ok:true
+          
+      	}
+      })
+    
+   var app2=new Vue({
+      el:"#app2",
+      data:{
+        ok:true
+      }
+   })
+   
+   var app3=new Vue({
+      el:"#app3"
+   })
+   var app4=new Vue({
+     el:"#app4",
+     data:{
+      type:"A"
+     }
+   })
+
+   var app5=new Vue({
+     el:"#app5",
+     data:{
+      type:"A"
+     }
+   })
+	</script>
+</body>
+</html>

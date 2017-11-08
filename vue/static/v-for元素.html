@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body id="app">
+  <ul id="example-2"> 
+     <li v-for="(item,index) of items">
+       
+       {{parentMessage}}-{{index}}-{{item.message}}
+     </li>
+  </ul> 
+
+  <ul id="example-3"> 
+     <template v-for="item in items">
+       
+        <li> {{item.msg}}</li>
+        <li class="divider">车上</li>
+
+     </template>
+  </ul>
+
+  <ul id="repeat-object" class="demo">
+        <li v-for="value in object">
+          {{value}}
+        </li>
+   </ul>
+
+   <div id="list">  
+     <span v-for="n in 10">
+       {{n}}
+     </span>
+   </div>
+
+   <my-component v-for='{item.index} in items' v-bind:item="item" v-bind:index="index" v-bind:key="item.id">
+   </my-component>   
+  <script src="../dist/vue.js"></script>
+	<script>
+ var example2=new Vue({
+    el:"#example-2",
+    data:{
+      parentMessage:'Parent',
+      items:[
+         {message:'Foo'},
+         {message:"bar"}
+      ]
+    }
+  })
+
+ var example3=new Vue({
+    el:"#example-3",
+    data:{
+      items:[
+         {msg:'Foo'},
+         {msg:"bar"}
+      ]
+    }
+  })
+
+ var example4=new Vue({
+    el:"#repeat-object",
+    data:{
+      object:{
+        firstName:"John",
+        lastName:"Doe",
+        age:30
+      }
+    }
+ })
+
+ var example5=new Vue({
+    el:"#list",
+    data:{
+      n:""
+    }
+ })
+	</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+     .aside{width: 200px;height: 80%;background: #fdd; position: fixed;left: 0;top: 0;display: flex;align-self: flex-end;} 
+     body,html{ height: 100%;width: 100%;margin:0;padding: 0;display: flex;align-items: end;width:100%;} 
+     .login{align-self: flex-end;} 
+     .footer{width: 100%;background: #ccc;height: 20%;position: fixed;left:0;bottom:0;} 
+     .container{height: 1800px;margin-left: 200px;background: #eee;width:100%;}
+    </style>
+</head>
+<body>
+    <div class="aside">
+        <p class="login">登录</p>
+    </div>
+    <div class="container">
+        
+    </div>
+    <div class="footer">
+        
+    </div>
+    <script>
+        window.onload=function(){
+            var aside=document.querySelector(".aside");
+            var container=document.querySelector(".container");
+            var footer=document.querySelector(".footer");
+            //获取到container的高度
+            var containerH=container.offsetHeight;
+            var clientH=document.documentElement.clientHeight;
+            console.log(containerH);
+            console.log(clientH);
+            //如果窗口的高度小于内容的高度
+            if(clientH<containerH){
+               console.log(0);
+               footer.style.display="none";
+               aside.style.height="100%";
+               window.onscroll=function(){
+                //鼠标滚动的高度
+                var scrollT=document.body.scrollTop;
+                console.log(scrollT);
+                if((scrollT+clientH)<containerH){
+                   footer.style.display="none";
+                   aside.style.height="100%";
+                }else {
+                    footer.style.display="block";
+                    aside.style.height="80%";
+                }
+               }
+            }else{//如果窗口的高度大于内容的高度
+                console.log(1);
+                footer.style="display:block";
+                aside.style="height: 100%";
+            }
+        }
+    </script>
+</body>
+</html>

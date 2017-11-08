@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+ <div id="example-1"> 
+      <button v-on:click="counter +=2"> 增加2</button>
+      <p>这个按钮被点击了{{counter}}次</p>
+ </div>
+
+ <div id="example-2"> 
+     <button v-on:click="great">Greet</button>
+ </div>
+
+ <div id="example-3"> 
+     <button v-on:click="say('hi')">Say hi</button>
+     <button v-on:click="say('what')">Say what </button>
+ </div>
+
+ <a href=" "  v-on:click.stop="doThis"></a>
+
+ <form action=" " v-on:click.stop.prevent="onSubmit"></form>
+
+ <a href="  " v-on:click.stop.prevent="doThat"></a>
+
+ <form action=" " v-on:submit.prevent></form>
+
+ <div v-on:click.self="doThat"></div>
+
+ <div v-on:click.self="doThat"></div>
+
+ <a v-on:click.once="doThis"></a>
+
+  <button v-on:click="warn('Form cannont be submitted yet.',Sevent)">
+     Submit
+  </button>
+  <script src="../dist/vue.js"></script>
+	<script>
+  var example1=new Vue({
+    el:"#example-1",
+    data:{
+      counter:0
+    }
+  })
+
+
+  var example2=new Vue({
+    el:"#example-2",
+    data:{
+      name:"Vue.js"
+    },
+    methods:{
+      great:function(event){
+        alert("Hello"+this.name+"!")
+        if(event){
+          alert(event.target.tagName)
+        }
+      }
+    }  
+  })
+  example2.great()
+
+
+  var example3=new Vue({
+    el:"#example-3",
+    methods:{
+      say:function(message){
+        alert(message)
+      }
+    }
+  })
+
+  var example4=new Vue({
+    el:"#example5",
+    methods:{
+      warn:function(message,event){
+        if(event)event.preventDefault()
+          alert(message)
+      }
+    }
+  })
+
+    
+	</script>
+</body>
+</html>

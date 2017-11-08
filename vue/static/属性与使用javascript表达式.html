@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   <div v-bind:id="dynamicId"></div>
+   <button v-bind:disabled="isButtonDisabled" id="app-3">
+   	Button
+   </button>
+	<script src="../dist/vue.js"></script>
+	<script>
+    var app3 = new Vue({
+	  el: '#app-3',
+	  data: {
+	    isButtonDisabled: false
+	  }
+	})
+	</script>
+</body>
+</html>

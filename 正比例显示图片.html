@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+    #preview{
+        width: 180px;
+        height: 180px;
+        border: 1px solid gray;
+        overflow: hidden;
+    }
+    #imghead{
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
+    }
+
+    </style>
+
+</head>
+<body>
+
+
+<div id="preview" width="180" height="180">
+<img id="imghead" border=0 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506342792785&di=3d1158e6fc467a2cb63780f24ada7587&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D2623834077%2C147223003%26fm%3D214%26gp%3D0.jpg"/> 
+</div>
+
+
+<script type="text/javascript">
+window.onload = function() {
+   var oImg = document.getElementById('imghead');
+    var oDiv = document.getElementById('preview');
+
+    var imgW = oImg.width;
+    var imgH = oImg.height;
+
+    var divW = oDiv.width;
+    var divH = oDiv.height;
+    
+    var MAXWIDTH = 180;
+    var MAXHEIGHT = 180;
+    
+
+    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, oImg.offsetWidth, oImg.offsetHeight);
+    oImg.width = rect.width;
+    oImg.height = rect.height;
+    oImg.style.marginLeft = -rect.left+'px';
+    oImg.style.marginTop = -rect.top + 'px';
+    console.log(rect);
+}
+
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+        console.log(maxWidth, maxHeight, width, height);
+        var param = {top:0, left:0, width:width, height:height};
+        if( width>maxWidth || height>maxHeight ){
+            rate = width / height;
+            console.log(rate);
+            if( rate > 1 ){ 
+                param.height = maxHeight;
+                param.width = Math.round(maxHeight * rate);
+                console.log(param.height, param.width);
+            }else{
+                param.width = maxWidth;
+                param.height = Math.round(maxWidth / rate);
+                console.log(param.height, param.width);
+            }
+        }
+        
+      param.left = Math.round((param.width - maxWidth) / 2 );
+      console.log(param.left);
+      param.top = Math.round((param.height - maxHeight) / 2 );
+      console.log(param.top);
+        return param;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+</head>
+<body>
+<div id="app">	
+   <p>
+    <router-link to="/boo">/user/foo</router-link>
+    <router-link to="/foo">/user/foo/profile</router-link>
+   </p>
+   <router-view class="view one"></router-view>
+   <router-view class="view two" name="a"></router-view>
+   <router-view class="view three" name="b"></router-view>
+</div> 
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> 
+<script>
+const Foo={template:'<div>Foo</div>'}
+const Bar={template:'<div>Bar</div>'}
+const Baz={template:'<div>Baz</div>'}
+
+const router= new VueRouter({
+  name:'user',
+  routes:[
+       {
+           path:"/boo",
+           redirect:"/foo",
+           components:{
+             default:Foo,
+             a:Bar,
+             b:Baz
+         }
+       },
+       {
+       	   path:'/foo',
+
+           components:{
+           default:Baz,
+           a:Bar,
+           b:Foo
+           },
+           alias: '/bgdg'     
+       }
+  ]
+ })
+
+new Vue({
+	router,
+	el:"#app"
+})
+
+</script>
+</body>
+</html>

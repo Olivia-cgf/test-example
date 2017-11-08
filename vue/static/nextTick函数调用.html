@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="example1">
+  {{message}}
+</div> 
+ <div id="example2">
+   <example></example>
+ </div>
+  
+  <script src="../dist/vue.js"></script>
+	<script>
+       var vm=new Vue({
+          el:"#example1",
+          data:{
+            message:"123"
+          }
+        })
+
+        vm.message="new message"
+        vm.$el.textContent==='new message'
+        Vue.nextTick(function(){
+          vm.$el.textContent==='new message'
+        }) 
+       
+
+
+        Vue.component('example',{
+          template:'<span>{{message}}</span>',
+          data:function(){
+            return{
+              message:'没有更新'
+            }
+          },
+          methods:{
+            updateMessage:function(){
+               this.message='更新完成'
+               console.log(this.$el.textContent)
+               this.$nextTick(function(){
+                 console.log(this.$el.textContent)
+               })
+            }
+          }
+        })   
+         var vm2=new Vue({
+            el:"#example2"
+        })
+	</script>
+</body>
+</html>
