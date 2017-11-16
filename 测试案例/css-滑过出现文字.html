@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .img{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+        .img:hover .before{
+            transform: scale(1);
+            transition:all .3s ease-in 0s;
+        }
+        .before{
+           position: absolute;
+           left:0;
+           top:0;
+           width: 300px;
+            height: 300px;
+            background-color: #000;
+            opacity: .7;
+            transform: scale(1,0);
+            transform-origin:0 300px;
+            transition: transfrom;
+            font-size:16px;
+            color:#fff;
+            transition:all .3s ease-in 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506083849715&di=749cdfdb00c3aeae03b0fb4da81d926e&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170222%2F85c4e6e506d6418e8372eced0c3a01da_th.jpeg" alt="">
+        <div class="before">
+            的房间爱神的箭法师的发俺的沙发打发斯蒂芬
+        </div>
+    </div>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+     <script>
+         
+     </script>
+</body>
+</html>

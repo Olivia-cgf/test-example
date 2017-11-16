@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <li class="yanzhengCode">
+        <button>验证码</button>
+    </li>
+      
+
+    <script>
+        var oBtn = document.querySelector('button');
+        var timer = null;
+        var th = 0;
+        timer = setInterval(function(){
+              th += 1;
+              oBtn.innerHTML = th;
+              if(th==6){
+                clearInterval(timer);
+                oBtn.innerHTML = '点击发送验证码';
+              }
+        },1000)
+    </script>
+</body>
+</html>

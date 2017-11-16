@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+      
+
+    <script>
+        // 清除两边的空格 
+String.prototype.trim = function() { 
+  return this.replace(/(^\s*)|(\s*$)/g, ''); 
+}; 
+var inputStr = "123";//用于存放输入的字符串
+if(!inputStr || !inputStr.trim() || isNaN(inputStr)){
+    //输入的不是数字
+    alert("不是数字");
+}
+    </script>
+</body>
+</html>
