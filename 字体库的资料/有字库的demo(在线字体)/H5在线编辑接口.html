@@ -1,0 +1,46 @@
+<!-- https://www.youziku.com/sdk/MV95ems/59295f1ef629d81914b80ad6.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+    <script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.client.min.js"></script>
+</head>
+<body>
+    <input type="text" id="text">
+    <span class="test1">家的沙发斯蒂芬</span>
+    <script> 
+    window.onload = function(){
+       var text = document.getElementById("text");
+       text.onblur= function(){
+       var str = text.value;
+        console.log(str);
+       var entity={ AccessKey:'df7d98d0b9814a198553e3adaf063df7',
+                    Content:str, // 注意是要改字体的文字内容
+                    Tag: '#text' // 改字体文字内容的选择器
+                  }; 
+
+       $youzikuClient.getFontFace(entity, function (result) {
+          console.log(result.FontFamily);　　　　　　　　
+          //如果没有填写Tag参数，则需要通过FontFamily将字体效果应用于文字上 
+          console.log(result.AccessKey); 
+          console.log(result.Tag); 
+          console.log(result.ErrorMessage);　　　　　　　
+          //如果代码设置有问题，将返回错误信息。
+           console.log(result.Code); 
+       })
+    }  
+      var entity={ AccessKey:'df7d98d0b9814a198553e3adaf063df7',
+                    Content:'家的沙发斯蒂芬',
+                    Tag: '.test1'
+                  }; 
+ 
+       $youzikuClient.getFontFace(entity, function (result) { 
+       }) }
+
+       // 注意点
+      /*1.对应的字体和对应的标签
+      2.在localhost:8090下面打开*/
+    </script>
+</body>
+</html>

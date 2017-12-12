@@ -1,0 +1,10 @@
+字蛛：就是字体图标的应用，没什么用
+实现网页字体不同建议不推荐关于兼容性还有加载和占内存
+
+http://www.youziku.com/introduce/index
+在线字体(web font)
+
+https://www.cnblogs.com/fjdingsd/p/5663561.html(比较详细)
+在前端页面中使用@font-face来显示web自定义字体【转】
+主要的话是：
+给大家提供几个免费字体下载的网址：Webfonts,Typekit,Kernest,Google Web Fonts,Kernest,Dafont,Niec Web Type,不然你点这里将有更多的免费字体。前面几个链接是帮助你获取一些优美的怪异的特殊字体，但下面这个工具作用更是无穷的大，他能帮你生成@font-face所需要的各种字体，这工具就是Font Squirrel。

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        1怎样才实现百度文库的那种效果呢？怎样才实现百度文库的那种效果呢？怎样才实现百度文库的那种效果呢？怎样才实现百度文库的那种效果呢？
+    <script>
+        var funcGetSelectText = function(){
+            var txt = '';
+            if(document.selection){
+                txt = document.selection.createRange().text;//ie
+            }else{
+                txt = document.getSelection();
+            }
+            return txt.toString();
+        }
+        var container = container || document;
+        container.onmouseup = function(){
+            var txt = funcGetSelectText();
+            if(txt)
+            {
+                alert(txt);
+            }
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+     <canvas></canvas>
+     <button class="codedown">点击</button>
+     <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512973127&di=0b7b00e78aa9b131c2184a6b9a8547c9&imgtype=jpg&er=1&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201409%2F03%2F20140903211925_eHNKU.jpeg" alt="" id="previewImg">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script>
+window.onload=function(){
+$(".codedown").click(function() {
+
+        var type = 'png';
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var context = canvas.getContext('2d');
+            var image = new Image();
+
+            image.src = '';
+            console.log(image.src);
+
+            var imageWidth = image.width;
+            var imageHeight = image.height;
+
+            canvas.width= imageWidth;
+            canvas.height= imageHeight;
+            console.log(imageWidth);
+
+            image.onload = function() {
+               context.drawImage(image,58,0,imageWidth,imageHeight,0,0,canvas.width,canvas.height);
+            }
+               
+        var imgData = canvas.toDataURL(type);
+        var _fixType = function(type) {
+            type = type.toLowerCase().replace(/jpg/i, 'jpeg');
+            var r = type.match(/png|jpeg|bmp|gif/)[0];
+            return 'image/' + r;
+        };
+
+        imgData = imgData.replace(_fixType(type), 'image/octet-stream');
+        var saveFile = function(data, filename) {
+            var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+            save_link.href = data;
+            save_link.download = filename;
+
+            var event = document.createEvent('MouseEvents');
+            event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            save_link.dispatchEvent(event);
+        };
+        var filename = 'weiyin_' + (new Date()).getTime() + '.' + type;
+        saveFile(imgData, filename);
+    })
+}
+    </script>
+</body>
+</html>
