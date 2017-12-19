@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+    <style> 
+    #div1{width:200px;height:200px;background:red;position:absolute;display: none;}
+    #div2{width:30px;height:30px;background:yellow;position: absolute;right:0;bottom:0;cursor:nw-resize;}
+    #div3{width:100px;height:100px;background: red;position: absolute;;right:0;top:0;}
+    </style>
+</head>
+<body>
+    <input type="button" value="点击" id="input1">
+    <div id="div1"> 
+        <div id="div2"> </div>
+    </div>
+    <div id="div3"> </div>
+    <script src="https://cdn.bootcss.com/seajs/3.0.2/sea.js"> </script>
+    <script>    
+        seajs.use('./main.js');
+      // 引入多个文件的js
+       /*seajs.use(['./main.js', './main2.js'],function(ex,ex2){
+          
+       });*/
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+   
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+
+// canvas不能直接把img画到canvas再转变成base64
+window.onload = function(){
+    var canvas = document.getElementById("myCanvas");
+    var cxt = canvas.getContext("2d");
+    cxt.fillStyle = "#FF0000";
+    cxt.beginPath();
+    cxt.arc(70, 18, 15, 0, Math.PI * 2, true);
+    cxt.closePath();
+    cxt.fill();
+    var img = new Image();
+    img.crossOrigin = 'Anonymous'; //解决跨域
+    img.src = canvas.toDataURL("image/jpeg",0.8);
+    $('body').append(img);
+}
+</script>
+</body>
+</html>

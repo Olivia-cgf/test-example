@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title> </title>
+    <style> 
+     body{
+        width: 100%;
+        height: 100%;
+        background:#000;
+     }
+     .left,.right{
+        width: 400px;
+        height:400px;
+        border:2px solid #fff;
+     }
+     .left{
+        float:left;
+     }
+     .right{
+        float:right;
+        margin-right: 100px;
+     }
+     body .img{
+        width: 500px;
+        height:400px;
+        border:2px solid #fff;
+     }
+     #imghead{
+        width:200px;
+        height:200px;
+     }
+     #text{
+        color:#fff;
+        font-size:24px;
+     }
+    </style>
+</head>
+<body>
+   <div class="left">
+       
+     <img id="imghead" border=0 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505645779678&di=be626358902f667676f18b760da39b54&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01be6c580db907a84a0e282b6dbd1c.gif" width="100%"/>
+   </div>
+   <div class="right">
+       <canvas id="canvas"> 您的浏览器尚不支持canvas</canvas>
+   </div>
+    <!-- <div class="img" id="preview">
+          <img id="imghead" border=0 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505645779678&di=be626358902f667676f18b760da39b54&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01be6c580db907a84a0e282b6dbd1c.gif" width="100%"/>
+    </div> -->
+     <!-- <input type="file" value="文件上传" id="file" onchange="previewImage(this)"/> -->
+     <span id="text"></span>
+     <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script src="touch.js"></script>
+    <script>    
+       //获取文件
+          function previewImage(file) {
+                var MAXWIDTH = 500;
+                var MAXHEIGHT = 400;
+                var div = document.getElementById('preview');
+                if (file.files && file.files[0]) {
+                    div.innerHTML = '<img id=imghead>';
+                    var img = document.getElementById('imghead');
+                    img.onload = function () {
+                        var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                        img.width = rect.width;
+                        img.height = rect.height;
+                        img.style.marginLeft = rect.left+'px';
+                        img.style.marginTop = rect.top + 'px';
+                    }
+                    var reader = new FileReader();
+                    reader.onload = function (evt) {
+                        img.src = evt.target.result;
+                    }
+                    reader.readAsDataURL(file.files[0]);
+                }else{  //兼容IE
+                    var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+                    file.select();
+                    var src = document.selection.createRange().text;
+                    div.innerHTML = '<img id=imghead>';
+                    var img = document.getElementById('imghead');
+                    img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+                    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                    status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+                    div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+                }
+           }
+
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight ){
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                if( rateWidth > rateHeight ){
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else{
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+               
+         var scalenum;
+
+         // 如何对图片进行缩放
+        function pinchendFn(scalenum) {     //放大缩小
+         var target = document.getElementById("imghead");
+         target.style.webkitTransition = 'all ease 0.05s';
+         touch.on('#imghead', 'touchstart', function(ev) {
+             ev.preventDefault();
+         });
+         var initialScale = 1;
+         var currentScale;
+          touch.on('#imghead', 'pinchend', function(ev) {
+             currentScale = ev.scale - 1;
+             currentScale = initialScale + currentScale;
+             currentScale = currentScale > 2 ? 2 : currentScale; //自己调节可以放大的最大倍数
+             currentScale = currentScale < 0.1 ? 0.1 : currentScale; //自己调节可以缩小的最小倍数
+             this.style.webkitTransform = 'scale(' + currentScale + ')';
+             scalenum = currentScale;
+             $('#text').text("当前缩放比例为:" + currentScale + "倍.");
+          });
+          touch.on('#imghead', 'pinchend', function(ev) {
+             initialScale = currentScale;
+             drawImageByScale(scalenum);
+           });
+        }
+             // $(function() {
+             window.onload = function(){
+                     //获取到画布
+                    var canvas = document.getElementById("canvas");
+                    var target = document.getElementById("imghead");
+                    var context = canvas.getContext("2d");
+                    var image = new Image();
+
+                    $('title').text("抓取并拖拽目标元素");
+                    touch.on('#imghead', 'touchstart', function(ev) {
+                        ev.preventDefault();
+                   });
+
+                    canvas.width = 400
+                    canvas.height = 400
+
+                    image.src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505645779678&di=be626358902f667676f18b760da39b54&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01be6c580db907a84a0e282b6dbd1c.gif";
+
+                    var dx=0, dy=0;
+                    image.onload = function(){
+                         dragFn();
+                         pinchendFn(scalenum);
+                     }
+                function dragFn(){
+                      var target = document.getElementById("imghead");
+                      touch.on('#imghead', 'drag', function(ev) {
+                        dx = dx || 0;
+                        dy = dy || 0;
+                         var offx = dx + ev.x + "px";
+                         var offy = dy + ev.y + "px";
+                  
+                        if( parseInt(offx) < 200 && parseInt(offy) < 200){
+                           this.style.webkitTransform = "translate3d(" + offx + "," + offy + ",0)";
+                            context.clearRect(0,0,canvas.width,canvas.height);
+                            context.drawImage(image,parseInt(offx) ,parseInt(offy), 200 ,200)
+                        }
+                    });
+                    touch.on('#imghead', 'dragend', function(ev) {
+                        dx += ev.x;
+                        dy += ev.y;
+                        $('title').text("当前x值为:" + dx + ", 当前y值为:" + dy + ".");
+                    });
+                }
+
+
+        function drawImageByScale( scale ){
+            var imageWidth = 1152 * scale
+            var imageHeight = 768 * scale
+            x = canvas.width /2 - imageWidth / 2
+            y = canvas.height / 2 - imageHeight / 2
+
+            context.clearRect( 0 , 0 , canvas.width , canvas.height )
+            context.drawImage( image , x , y , imageWidth , imageHeight )
+        }
+                   
+                    }
+     // });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<!-- <p id="pElement">双击文字实现可编辑状态</p> -->
+
+注：当想控制某一个p实现该函数时可以实现双击事件ondblclick
+
+比如<p id="someDiv" ondblclick="toReplace(this)">双击文字实现可编辑状态</p>
+
+<script>
+    // window.onload = function() { 
+    // 加载的时候就被初始化，此处的this是指id为oldDiv的p 
+    // document.getElementById("pElement").ondblclick = function() { 
+    //     toReplace(this) 
+    //     } 
+    // } 
+ 
+    // 此函数功能是新建一个input元素替换p 
+    //当input元素失去焦点时又变回原来的p 
+    toReplace = function(pElement) { 
+        // 创建一个input元素 
+        var inputElement = document.createElement("input"); 
+        // 把obj里面的元素以及文本内容赋值给新建的inputElement 
+        inputElement.value = pElement.innerHTML; 
+     
+        // 用新建的inputElement代替原来的oldDivElement元素 
+        document.body.replaceChild(inputElement, pElement); 
+        // 当inputElement失去焦点时触发下面函数，使得input变成p 
+        inputElement.onblur = function() { 
+            //把input的值交给原来的p 
+            pElement.innerHTML = inputElement.value; 
+            //用原来的p重新替换inputElement 
+            document.body.replaceChild(pElement, inputElement); 
+        } 
+    } 
+ 
+</script>
+</body>
+</html>

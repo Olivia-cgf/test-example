@@ -4,7 +4,36 @@
 http://www.youziku.com/introduce/index
 在线字体(web font)
 
+利用有字库的js注意要先定义好字体，用font-family可以直接添加，不然是不起作用要用到里面的函数。
+
 https://www.cnblogs.com/fjdingsd/p/5663561.html(比较详细)
 在前端页面中使用@font-face来显示web自定义字体【转】
 主要的话是：
 给大家提供几个免费字体下载的网址：Webfonts,Typekit,Kernest,Google Web Fonts,Kernest,Dafont,Niec Web Type,不然你点这里将有更多的免费字体。前面几个链接是帮助你获取一些优美的怪异的特殊字体，但下面这个工具作用更是无穷的大，他能帮你生成@font-face所需要的各种字体，这工具就是Font Squirrel。
+
+字体包http://font.chinaz.com/161028349920.htm
+
+首先获取要使用字体的三种文件格式.EOT、.TTF或.OTF、.SVG，确保能在主流浏览器中都能正常显示该字体。
+
+.EOT，适用于Internet Explorer 4.0+
+.TTF或.OTF，适用于Firefox 3.5、Safari、Opera
+.SVG，适用于Chrome、IPhone
+
+声明
+
+@font-face {
+ font-family: 'newFont';
+ src: url('fontName.eot');
+ src: local('fontName Regular'),
+        local('fontName'),
+        url('fontName.woff') format('woff'),
+        url('fontName.ttf') format('truetype'),
+        url('fontName.svg#fontName') format('svg');
+}  
+调用
+
+p{font-family: newFont}
+
+
+在线转换字体格式
+https://www.fontke.com/tool/fontface/

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+   function getBase64Image(img) {
+      var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d"); 
+    
+       // 利用img.onload是解决不了这个问题的，必须是在运行服务器的情况下，还有是本地的图片
+       // 注意浏览器上的地址栏是localhost:8080这一类的地址
+      /*img.onload = function(){
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+      }*/
+
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+      var dataURL = canvas.toDataURL("image/png");
+      return dataURL;
+      // return dataURL.replace("data:image/png;base64,", "");
+    }
+
+    function main() {
+      var img = document.createElement('img');
+      img.src = 'e824b899a9014c08e68d91d6007b02087bf4f40b.jpg';
+      img.onload =function() {
+        var data = getBase64Image(img);
+        img.src=data;
+        console.log(data);
+      }
+
+      document.body.appendChild(img);
+    }
+
+    main()
+
+  </script>
+</body>
+</html>
