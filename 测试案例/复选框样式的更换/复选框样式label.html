@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>利用label实现复选框的样式更改</title>
+    <style>
+        .checkbox{display: inline-block;width: 30px;height: 30px;background: #563fc2;border-radius: 50%;}
+        input{width: 20px;height: 20px;background: #f00;opacity: 0;}
+
+    </style>
+</head>
+<body>
+    <label for="id" class="checkbox"> <input type="checkbox" id="sex"> </label>
+    <label for="id" class="checkbox"> <input type="checkbox" id="sex"> </label>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js">  </script>
+   <script>    
+   $(".checkbox").click(function(){
+       if($(this).find("#sex").is(':checked')) {
+              $(this).css("background","#ff0");
+         }else{
+              $(this).css("background","#563fc2");
+         }
+   });
+   </script>
+</body>
+</html>
